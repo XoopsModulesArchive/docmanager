@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<book id="docmanager" lang="en">
+
+    <bookinfo>
+        <title>Documentation for the docmanager module Version 1.1.0</title>
+        
+        <author>
+            <firstname>Jeff</firstname> 
+            <surname>Saucier</surname>
+            <affiliation>
+                <address><email>jsaucier _AT_ infostrategique _DOT_ com</email></address>
+            </affiliation>
+        </author>
+    </bookinfo>
+
+    <chapter id="changelog">
+        <title>ChangeLog</title>
+        
+        <para>I recommend to update to this new version. Simply overwrite the files for the module (don't forget the "tools" and "scripts" folder).</para>
+        <para>Here is what change since the last version :</para>
+        
+        <itemizedlist>
+            <listitem><para>Better error reporting when folder don't have the right permissions on disk</para></listitem>
+            <listitem><para>In the administration interface, you can now see if everything is OK</para></listitem>
+            <listitem><para>Bugs corrections</para></listitem>
+        </itemizedlist>
+    </chapter>
+
+    <chapter id="informations">
+        <title>Informations</title>
+        
+        <para>This module allow you to operate a documentation center that user can access. It allow :</para>
+        
+        <itemizedlist>
+            <listitem><para>Full text search with swish-e integration</para></listitem>
+            <listitem><para>Summary with Open Text Summarizer integration</para></listitem>
+            <listitem><para>Rights administration ( only on folders for the moment )</para></listitem>
+            <listitem><para>Hide or show folder</para></listitem>
+            <listitem><para>Create/modify/delete folders/files</para></listitem>
+        </itemizedlist>
+        
+        <para>This module has been developped for the CRISP extranet and is released with the GPL license.</para>
+    </chapter>
+    
+    <chapter id="installation">
+        <title>Installation</title>
+
+        <section id="requirements">
+            <title>Requirements</title>
+            
+            <para>This module has been tested with the following configurations. It may work on other plateforme and configurations :</para>
+            
+            <itemizedlist>
+                <listitem><para>Xoops 2.0.7.x and 2.0.9.x</para></listitem>
+                <listitem><para>Linux and Apache</para></listitem>
+                <listitem><para>Open Text Summarizer for the summary ( <ulink url="http://libots.sourceforge.org">http://libots.sourceforge.org</ulink> )</para></listitem>
+                <listitem><para>Swish-E for the full text search ( <ulink url="http://www.swish-e.org">http://www.swish-e.org</ulink> )</para></listitem>
+            </itemizedlist>
+            
+            <para>If you plan to use the full text search and summary features, you must convert file to text with the following utilities :</para>
+            
+            <itemizedlist>
+                <listitem><para>pdftotext ( <ulink url="http://www.glyphandcog.com/">http://www.glyphandcog.com/</ulink> )</para></listitem>
+                <listitem><para>ps2ascii</para></listitem>
+                <listitem><para>links ( <ulink url="http://links.sourceforge.net/">http://links.sourceforge.net/</ulink> )</para></listitem>
+                <listitem><para>catdoc ( <ulink url="http://www.45.free.net/~vitus/ice/catdoc/">http://www.45.free.net/~vitus/ice/catdoc/</ulink> )</para></listitem>
+                <listitem><para>ppthtml ( <ulink url="http://chicago.sourceforge.net/xlhtml/">http://chicago.sourceforge.net/xlhtml/</ulink> )</para></listitem>
+            </itemizedlist>
+            
+            <para>You can always edit the ots_script.php page to change the program that I use to convert file.</para>
+        </section>
+        
+        <section id="mod_installation">
+            <title>Module installation</title>
+            
+            <para>To install this module, first untar or unzip it. It will create a folder named "docmanager".</para>
+            <para>Copy this folder to the Xoops modules folder and activate the new module from the administration page.</para>
+            <para>Now, you must create a folder on your server where you will put the file. I recommend to put this folder outside of your web path to keep the documents access secure.</para>
+            <para>Now, in the folder you have created, create a folder named "parent_folder" and one named "tools" without the quotes. Adjust the permissions for the "parent_folder" folder to make it writable by your web server.</para>
+            
+            <para>So, to resume, if the folder you have choose to put the file is "/var/www/uploads", here is the final structure with permissions :</para>
+            
+<screen>
+jeff@portable docmanager $ ls -ld /var/www/uploads/
+drwxr-xr-x  2 root   root   4096 Nov 22 11:53 uploads
+
+jeff@portable docmanager $ ls -l /var/www/uploads/
+drwxr-xr-x  3 apache apache 4096 Nov 22 13:35 parent_folder
+drwxr-xr-x  2 root   root   4096 Nov 22 11:53 tools
+</screen>
+
+            <para>Now, copy the two files of the "tools" folder of docmanager in the new "tools" folder you have just created and erase the folder from docmanager.</para>
+            <para>Copy the "sentence_filter.pl" script from the "scripts" folder in your system PATH and make it executable.</para>
+            <para>After setting the folder structure on the disk, go to the docmanager administration page and set the folder your have choosen in the text field and click "Validate".</para>
+            <para>When the page refresh, you must see four "OK" appear. If not, you have do something wrong. Please doucle check the step below.</para>
+            <para>If it's all OK, you can now use docmanager!</para>
+            
+            <para>NOTE: Please check the paths in include/search.inc.php and tools/ots_script.php. The next version will do it automatically.</para>
+            <para>NOTE: Delete the "scripts" folder from docmanager folder. The scripts in this folder is explain in the <link linkend="extras">Extras section</link>.</para>
+        </section>
+        
+        <section id="extras">
+            <title>Extras</title>
+            
+            <para>If you plan to use ppthtml ( <ulink url="http://chicago.sourceforge.net/xlhtml/">http://chicago.sourceforge.net/xlhtml/</ulink> ), a patch is avaible in the "scripts" folder to fix a problem with long folders name.</para>
+            
+            <para>If you check in the "scripts" folder of docmanager, you will see some scripts. The scripts are targeted specially for the CRISP but you can have a good start to write your own. Here is an explanation of the scripts :</para>
+            
+            <itemizedlist>
+                <listitem><para>sentence_filter.pl : Put it in the system path. It allow to remove junk from text to ease OTS in doing better summary</para></listitem>
+                <listitem><para>cron.swish-e : Allow you to do incremential index of your document</para></listitem>
+                <listitem><para>cron.swish-e.weekly : Allow you to do full reindex of your document</para></listitem>
+                <listitem><para>import_folders.php : Script to import a folder in the documentation center. Put it in a folder directly in the Xoops path and launch it via your browser.</para></listitem>
+            </itemizedlist>
+            
+            <para>If you plan to use OTS (Open Text Summarizer), you must copy and make executable sentence_filter.pl in your PATH or change the ots_script.php file.</para>
+            <para>Remember, you must erase the "scripts" folder to assure security of the module. Don't keep it on a running server.</para>
+        </section>
+    </chapter>
+</book>

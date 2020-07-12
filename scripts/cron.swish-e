@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cd /var/www/uploads/tools
+
+touch indexing_time.file2
+
+if swish-e -c swish-e.conf -N indexing_time.file -f index.tmp; then
+	mv -f index.tmp index.incremental
+	mv -f index.tmp.prop index.incremental.prop
+
+	mv -f indexing_time.file2 indexing_time.file
+
+	swish-e -M index.swish-e index.incremental index.tmp
+	mv -f index.tmp index.swish-e
+	mv -f index.tmp.prop index.swish-e.prop
+
+	rm -f index.incremental
+	rm -f index.incremental.prop
+else
+	rm -f indexing_time.file2
+	rm -f index.tmp.temp
+	rm -f index.tmp.prop.temp
+fi

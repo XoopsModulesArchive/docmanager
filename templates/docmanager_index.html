@@ -1,0 +1,196 @@
+<div align="center">
+    <H2><b><{$docmanager_main_title}></b></H2>
+</div>
+
+<br /><br />
+
+<b><{$docmanager_error}></b>
+
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td>
+                        <b><{$docmanager_navigation_bar_title}></b>
+                        <{section name=i loop=$docmanager_navigation_bar_id}>
+                            <a href="<{$docmanager_url}>/index.php?curent_dir=<{$docmanager_navigation_bar_id[i]}>"><{$docmanager_navigation_bar_name[i]}></a>
+                            &nbsp;/&nbsp;
+                        <{/section}>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="center">
+                        <b><{$docmanager_action_bar_title}><{$docmanager_current_folder_name}></b>
+                        <br />
+                        <{$docmanager_action_bar}>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<br /><br />
+
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td>
+                        <b><{$docmanager_folder_title}><{$docmanager_current_folder_name}></b>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<br />
+
+<table cellpadding="0" cellspacing="0" width="100%" align="center" border="0">
+    <tr>
+        <td width="5%" align="left">
+            &nbsp;
+        </td>    
+        <td class="grayname" width="55%" align="left">
+            <{$docmanager_folder_name}>
+        </td>
+        <td class="grayname" width="20%" align="center">
+            <{if $docmanager_folderlist_mod[i] == 1}>
+                <{$docmanager_folder_mod}>
+            <{/if}>
+        </td>                
+        <td class="grayname" width="20%" align="center">
+            <{if $docmanager_folderlist_erase[i] == 1}>
+                <{$docmanager_folder_delete}>
+            <{/if}>
+        </td>        
+    </tr>
+    
+    <{section name=i loop=$docmanager_folderlist_id}>
+    <tr>
+        <td width="5%" align="left">
+            <a href="<{$docmanager_url}>/index.php?curent_dir=<{$docmanager_folderlist_id[i]}>"><img src="<{$docmanager_url}>/images/folder.png" alt="" /></a>
+        </td>    
+        <td width="55%" align="left">
+            <a href="<{$docmanager_url}>/index.php?curent_dir=<{$docmanager_folderlist_id[i]}>"><{$docmanager_folderlist_name[i]}></a>
+        </td>
+        <td width="20%" align="center">
+            <{if $docmanager_folderlist_mod[i] == 1}>
+                <a href="<{$docmanager_url}>/mod_folder.php?curent_dir=<{$docmanager_folderlist_id[i]}>"><img src="<{$docmanager_url}>/images/folder_mod.png" alt="" /></a>
+            <{/if}>
+        </td>        
+        <td width="20%" align="center">
+            <{if $docmanager_folderlist_erase[i] == 1}>
+                <a href="<{$docmanager_url}>/erase_folder.php?curent_dir=<{$docmanager_folderlist_id[i]}>"><img src="<{$docmanager_url}>/images/folder_del.png" alt="" /></a>
+            <{/if}>
+        </td>
+    </tr>            
+    <{/section}>                        
+</table>
+
+<br /><br />
+
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td>
+                        <b><{$docmanager_document_title}><{$docmanager_current_folder_name}></b>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<br />
+
+<table cellpadding="0" cellspacing="0" width="100%" align="center" border="0">
+    <tr>
+        <td width="5%" align="left">
+            &nbsp;
+        </td>    
+        <td class="grayname" width="35%" align="left">
+            <{$docmanager_file_name}>
+        </td>
+        <td class="grayname" width="20%" align="right">
+            <{$docmanager_file_date}>
+        </td>
+        <td class="grayname" width="15%" align="right">
+            <{$docmanager_file_space}>
+        </td>        
+        <td class="grayname" width="15%" align="center">
+            <{$docmanager_file_summary}>
+        </td>                
+        <td class="grayname" width="10%" align="center">
+            <{if $docmanager_filelist_erase[i] == 1}>
+                <{$docmanager_file_delete}>
+            <{/if}>
+        </td>        
+    </tr>
+    
+    <{section name=i loop=$docmanager_filelist_id}>
+    <tr>
+        <td width="5%" align="left">
+            <a href="<{$docmanager_url}>/view_file.php?curent_file=<{$docmanager_filelist_id[i]}>&amp;curent_dir=<{$docmanager_current_folder}>"><img src="<{$docmanager_url}>/images/extensions/<{$docmanager_filelist_icon[i]}>" alt="" /></a>
+        </td>    
+        <td width="35%" align="left">
+            <a href="<{$docmanager_url}>/view_file.php?curent_file=<{$docmanager_filelist_id[i]}>&amp;curent_dir=<{$docmanager_current_folder}>"><{$docmanager_filelist_name[i]}></a>
+        </td>
+        <td width="20%" align="right">
+            <{$docmanager_filelist_date[i]}>
+        </td>
+        <td width="15%" align="right">
+            <{$docmanager_filelist_space[i]}>
+        </td>        
+        <td width="15%" align="center">
+            <a href="<{$docmanager_url}>/view_file.php?curent_file=<{$docmanager_filelist_id[i]}>&amp;curent_dir=<{$docmanager_current_folder}>&amp;summary=1"><img src="<{$docmanager_url}>/images/file_summary.png" alt="" /></a>
+        </td>        
+        <td width="10%" align="center">
+            <{if $docmanager_filelist_erase[i] == 1}>
+                <a href="<{$docmanager_url}>/erase_file.php?curent_file=<{$docmanager_filelist_id[i]}>&amp;curent_dir=<{$docmanager_current_folder}>"><img src="<{$docmanager_url}>/images/file_del.png" alt="" /></a>
+            <{/if}>
+        </td>
+    </tr>            
+    <{/section}>                        
+</table>
+
+
+<{if $docmanager_admin == 1}>
+<br /><br /><br />
+
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td align="center">
+                        <b><{$docmanager_admin_title}></b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>                
+                <tr>
+                    <td align="center">
+                        <a href="<{$docmanager_url}>/admin/rights.php?curent_dir=<{$docmanager_folderid}>" target="blank"><b><{$docmanager_rights_title}><{$docmanager_current_folder_name}></b></a>
+                    </td>
+                </tr>                                
+            </table>
+        </td>
+    </tr>
+</table>
+
+<{/if}>

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd /var/www/uploads/tools
+
+rm -f index.swish-e index.swish-e.prop indexing_time.file
+
+touch indexing_time.file
+
+if swish-e -c swish-e.conf; then
+	cd
+else
+	rm -f index.swish-e.temp
+	rm -f index.swish-e.prop.temp
+fi

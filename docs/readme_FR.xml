@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<book id="docmanager" lang="fr">
+
+    <bookinfo>
+        <title>Documentation pour le module docmanager Version 1.1.0</title>
+        
+        <author>
+            <firstname>Jeff</firstname> 
+            <surname>Saucier</surname>
+            <affiliation>
+                <address><email>jsaucier _AT_ infostrategique _DOT_ com</email></address>
+            </affiliation>
+        </author>
+    </bookinfo>
+
+    <chapter id="changelog">
+        <title>ChangeLog</title>
+        
+        <para>Je recommande de faire la mise &agrave; jour version cette nouvelle version. Simplement copier les fichiers par dessus les autres (ne pas oublier les fichiers dans le r&eacute;pertoire "tools" et "scripts").</para>
+        
+        <para>Voici ce qui a chang&eacute; depuis la derni&egrave;re version :</para>
+        
+        <itemizedlist>
+            <listitem><para>Meilleur retour d'erreur quand le r&eacute;pertoire sur le disque n'a pas les bonnes permissions</para></listitem>
+            <listitem><para>Vous pouvez maintenant voir dans l'interface d'administration si tout est correct</para></listitem>
+            <listitem><para>Correction de bugs</para></listitem>
+        </itemizedlist>
+    </chapter>
+    
+    <chapter id="informations">
+        <title>Informations</title>
+        
+        <para>Ce module permet d'op&eacute;rer un centre de documentation pour les utilisateurs d'un site. Il permet :</para>
+        
+        <itemizedlist>
+            <listitem><para>La recherche plein texte avec l'int&eacute;gration de swish-e</para></listitem>
+            <listitem><para>Le r&eacute;sum&eacute; d'un texte avec l'int&eacute;gration d'Open Text Summarizer</para></listitem>
+            <listitem><para>La gestion des droits ( pr&eacute;sentement seulement sur les r&eacute;pertoires )</para></listitem>
+            <listitem><para>De rendre un r&eacute;pertoire cach&eacute; ou visible</para></listitem>
+            <listitem><para>Cr&eacute;ation/modification/suppression de r&eacute;pertoires/fichiers</para></listitem>
+        </itemizedlist>
+        
+        <para>Ce module a &eacute;t&eacute; d&eacute;velopp&eacute; pour l'extranet du CRISP et est distribu&eacute; sous license GPL.</para>
+    </chapter>
+    
+    <chapter id="installation">
+        <title>Installation</title>
+
+        <section id="requirements">
+            <title>Pr&eacute; requis</title>
+            
+            <para>Ce module a &eacute;t&eacute; test&eacute; avec les configurations suivantes. D'autres configurations peuvent s&ucirc;rement &ecirc;tre support&eacute;es :</para>
+            
+            <itemizedlist>
+                <listitem><para>Xoops 2.0.7.x et 2.0.9.x</para></listitem>
+                <listitem><para>Linux et Apache</para></listitem>
+                <listitem><para>Open Text Summarizer pour les sommaires ( <ulink url="http://libots.sourceforge.org">http://libots.sourceforge.org</ulink> )</para></listitem>
+                <listitem><para>Swish-E pour les recherches plein texte ( <ulink url="http://www.swish-e.org">http://www.swish-e.org</ulink> )</para></listitem>
+            </itemizedlist>
+            
+            <para>Si vous pensez utiliser les recherches plein texte et les sommaires, vous devez avoir les utilitaires suivants pour convertir les fichiers :</para>
+            
+            <itemizedlist>
+                <listitem><para>pdftotext ( <ulink url="http://www.glyphandcog.com/">http://www.glyphandcog.com/</ulink> )</para></listitem>
+                <listitem><para>ps2ascii</para></listitem>
+                <listitem><para>links ( <ulink url="http://links.sourceforge.net/">http://links.sourceforge.net/</ulink> )</para></listitem>
+                <listitem><para>catdoc ( <ulink url="http://www.45.free.net/~vitus/ice/catdoc/">http://www.45.free.net/~vitus/ice/catdoc/</ulink> )</para></listitem>
+                <listitem><para>ppthtml ( <ulink url="http://chicago.sourceforge.net/xlhtml/">http://chicago.sourceforge.net/xlhtml/</ulink> )</para></listitem>
+            </itemizedlist>
+            
+            <para>Vous pouvez toujours &eacute;diter le fichier ots_script.php pour changer les programmes utilis&eacute;s.</para>
+        </section>
+        
+        <section id="mod_installation">
+            <title>Installation</title>
+            
+            <para>Pour installer ce module, vous devez commencer par le d&eacute;compresser. Un r&eacute;pertoire "docmanager" sera cr&eacute;&eacute;.</para>
+            <para>Copiez ce r&eacute;pertoire dans le r&eacute;pertoire des modules de Xoops et aller l'activer dans l'interface d'administration de Xoops.</para>
+            <para>Maintenant, vous devez cr&eacute;er un r&eacute;pertoire sur le disque de votre serveur qui contiendra les fichiers du centre de documentation. Je vous recommande de cr&eacute;er ce r&eacute;pertoire en dehors du r&eacute;pertoire web afin de garder l'acc&egrave;s aux documents s&eacute;curitaire.</para>
+            <para>Un fois le r&eacute;pertoire cr&eacute;&eacute;, vous devez maintenant cr&eacute;er un r&eacute;pertoire nomm&eacute; "parent_folder" et un nomm&eacute; "tools" (sans les guillemets) dans le r&eacute;pertoire choisit plus haut. Ajustez les permissions afin que votre serveur web puisse &eacute;crire dans le r&eacute;pertoire "parent_folder".</para>
+            
+            <para>Alors, pour r&eacute;sumer le tout, si vous avez choisit de mettre vos fichiers dans le r&eacute;pertoire "/var/www/uploads", voici le r&eacute;sultat final avec les permissions :</para>
+            
+<screen>
+jeff@portable docmanager $ ls -ld /var/www/uploads/
+drwxr-xr-x  2 root   root   4096 Nov 22 11:53 uploads
+
+jeff@portable docmanager $ ls -l /var/www/uploads/
+drwxr-xr-x  3 apache apache 4096 Nov 22 13:35 parent_folder
+drwxr-xr-x  2 root   root   4096 Nov 22 11:53 tools
+</screen>
+
+            <para>Maintenant, copiez les deux fichiers dans le r&eacute;pertoires "tools" de docmanager dans le nouveau r&eacute;pertoire "tools" que vous venez de cr&eacute;er et effacer le r&eacute;pertoire "tools" de docmanager.</para>
+            <para>Copier le fichier "sentence_filter.pl" du r&eacute;pertoire "scripts" dans votre chemin syst&egrave;me (PATH) et rendez le ex&eacute;cutable.</para>
+            <para>Apr&egrave;s avoir fait ces &eacute;tapes, allez dans la page de configuration de docmanager dans Xoops et inscrivez le r&eacute;pertoire choisit plus haut et cliquez sur "Valider".</para>
+            <para>Quand la page revient, vous devrez voir quatres "OK". Si vous ne les voyez pas, vous avez fait de quoi de pas correct. SVP, rev&eacute;rifiez les &eacute;tapes pr&eacute;c&eacute;dentes.</para>
+            <para>Si vous voyez que des "OK", vous pouvez maintenant utiliser docmanager!</para>
+            
+            <para>NOTE: Assurez vous que les PATH dans le fichier include/search.inc.php et tools/ots_script.php sont correct. La prochaine version validera ceci automatiquement.</para>
+            <para>NOTE: Effacez le r&eacute;pertoire "scripts" de docmanager. Le contenu de ce r&eacute;pertoire est expliqu&eacute; dans la <link linkend="extras">section Extras</link>.</para>
+        </section>
+        
+        <section id="extras">
+            <title>Extras</title>
+            
+            <para>Si vous pensez utiliser ppthtml ( <ulink url="http://chicago.sourceforge.net/xlhtml/">http://chicago.sourceforge.net/xlhtml/</ulink> ), une patch est disponible dans le r&eacute;pertoire "scripts" pour corriger un probl&egrave;me avec les noms de r&eacute;pertoires longs.</para>
+            
+            <para>Si vous regarder dans le r&eacute;pertoire "scripts", vous verres quatres scripts. Ces script ont &eacute;t&eacute; fait sp&eacute;cifiquement pour le CRISP mais peuvent &ecirc;tre utile pour vous aider &agrave; faire vos propres scripts. Voici une explication rapide de chaques scripts :</para>
+            
+            <itemizedlist>
+                <listitem><para>sentence_filter.pl : &Agrave; mettre dans le path du syst&egrave;me afin d'augmenter l'efficacit&eacute; des r&eacute;sum&eacute;s. Fait simplement un tri dans un texte afin d'&eacute;l&eacute;miner le plus de "junk" possible</para></listitem>
+                <listitem><para>cron.swish-e : Script cron qui permet d'indexer le contenu du centre de documentation de façon incr&eacute;mentale</para></listitem>
+                <listitem><para>cron.swish-e.weekly : Script cron qui r&eacute;index le contenu au complet du centre de documentation</para></listitem>
+                <listitem><para>import_folders.php : Script pour importer un r&eacute;pertoire dans le centre de documentation. &Agrave; placer dans un r&eacute;pertoire directement dans la racine de Xoops et ex&eacute;cuter avec le navigateur.</para></listitem>
+            </itemizedlist>
+            
+            <para>Si vous pensez utiliser OTS, vous devez copier le fichier "sentence_filter.pl" et le rendre ex&eacute;cutable dans le path de votre syst&egrave;me.</para>
+            <para>N'oubliez pas, vous devez effacer le r&eacute;pertoire "scripts" pour assurer une meilleur s&eacute;curit&eacute; du module.</para>
+        </section>
+    </chapter>
+</book>

@@ -1,0 +1,155 @@
+<div align="center">
+    <H2><b><{$docmanager_main_title}></b></H2>
+</div>
+
+<br /><br />
+
+<b><{$docmanager_error}></b>
+
+
+<{if $docmanager_error == ""}>
+
+<a href="<{$docmanager_url}>/index.php?curent_dir=<{$docmanager_folder_id}>"><-- <{$docmanager_back_to_folder}></a>
+
+<br /><br />
+
+<{if $docmanager_viewfile_summary != ""}>
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td align="center">
+                        <b><{$docmanager_summary_title}></b>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;                        
+                    </td>
+                </tr>   
+                <tr>
+                    <td>
+                        &nbsp;                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="graybartop">
+                        <{$docmanager_viewfile_summary}>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<br /><br />
+<{/if}>
+
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td colspan="2" align="center">
+                        <b><{$docmanager_title}></b>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        &nbsp;                        
+                    </td>
+                </tr>   
+                <tr>
+                    <td colspan="2">
+                        &nbsp;                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><{$docmanager_lang_file_type}></b>
+                    </td>
+                    <td>
+                        <img src="<{$docmanager_url}>/images/extensions/<{$docmanager_file_type}>" alt="" />
+                    </td>
+                </tr>                
+                <tr>
+                    <td>
+                        <b><{$docmanager_lang_file_name}></b>
+                    </td>
+                    <td>
+                        <{$docmanager_file_name}>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><{$docmanager_lang_file_space}></b>
+                    </td>
+                    <td>
+                        <{$docmanager_file_space}> Ko
+                    </td>
+                </tr>                
+                <tr>
+                    <td>
+                        <b><{$docmanager_lang_file_createddate}></b>
+                    </td>
+                    <td>
+                        <{$docmanager_file_createddate}>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><{$docmanager_lang_file_moddate}></b>
+                    </td>
+                    <td>
+                        <{$docmanager_file_modificationdate}>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <b><{$docmanager_lang_file_owner}></b>
+                    </td>
+                    <td>
+                        <{$docmanager_file_owner}>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <b><{$docmanager_lang_file_usermod}></b>
+                    </td>
+                    <td>
+                        <{$docmanager_file_usermod}>
+                    </td>
+                </tr> 
+            </table>
+        </td>
+    </tr>
+</table>
+
+<br /><br />
+
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td align="center">
+                        <b><{$docmanager_viewfile_action}></b>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;                     
+                    </td>
+                </tr>   
+                <tr>
+                    <td align="center">
+                        <{$docmanager_viewfile_action_bar}>                    
+                    </td>
+                </tr>                   
+            </table>
+        </td>
+    </tr>
+</table>
+
+<{/if}>

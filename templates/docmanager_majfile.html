@@ -1,0 +1,56 @@
+<div align="center">
+    <H2><b><{$docmanager_main_title}></b></H2>
+</div>
+
+<br /><br />
+
+<b><{$docmanager_error}></b>
+
+
+<{if $docmanager_error == ""}>
+
+<table cellpadding="1" cellspacing="0" width="100%" align="center" border="1">
+    <tr>
+        <td>
+            <table cellpadding="1" cellspacing="0" width="100%" align="center" border="0">
+                <tr>
+                    <td>
+                        <b><{$docmanager_title}><H3><{$docmanager_file_name}></H3></b>                        
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<br /><br />
+
+<form action='insert_info.php' enctype="multipart/form-data" method='post'>
+
+<table cellpadding="0" cellspacing="0" width="100%" align="center" border="0">
+    <tr>
+        <td width="40%" align="left">
+            <{$docmanager_majfile_name}>
+        </td>    
+        <td width="60%" align="left">
+            <input type="file" name="file_to_maj" value=""></input>
+        </td>
+    </tr>
+</table>
+
+<input type="hidden" name="folder_id" value="<{$docmanager_folder_id}>"></input>
+<input type="hidden" name="file_id" value="<{$docmanager_file_id}>"></input>
+<input type="hidden" name="op" value="maj_file"></input>
+
+
+<br /><br />
+
+<div align="center">
+    <input type="submit" value="<{$docmanager_majfile_submit}>"></input>
+    &nbsp;&nbsp;
+    <input type="button" value="<{$docmanager_majfile_cancel}>" onclick="javascript:history.go(-1)"></input>    
+</div>
+
+</form>
+
+<{/if}>
